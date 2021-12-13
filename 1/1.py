@@ -56,3 +56,28 @@ In this example, there are 7 measurements that are larger than the previous meas
 How many measurements are larger than the previous measurement?
 
 '''
+
+
+# iterate through each line 
+# compare with previous line
+# if value increased, increment count
+
+def main(): 
+
+    # open file
+    file = open('1-1-input.txt', 'r')
+    lines = file.readlines()
+
+    larger = 0
+    previous = lines[0]
+
+    # loop over each line in file
+    for line in lines: 
+        if line > previous:
+            larger += 1
+        previous = line
+
+    # close file
+    file.close()
+
+    print(larger)
