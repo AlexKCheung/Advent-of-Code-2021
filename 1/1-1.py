@@ -62,7 +62,7 @@ How many measurements are larger than the previous measurement?
 # if value increased, increment count
 
 # open file
-file = open('1-1-input.txt', 'r')
+file = open('1-input.txt', 'r')
 lines = file.readlines()
 
 larger = 0
