@@ -51,3 +51,62 @@ Use the binary numbers in your diagnostic report to calculate the oxygen generat
 then multiply them together. What is the life support rating of the submarine? 
 (Be sure to represent your answer in decimal, not binary.)
 '''
+
+
+# open file
+file = open('3-input.txt', 'r')
+lines = file.readlines()
+
+# len gave me one more than digits, probably endl counts as one
+line_length = len(lines[0]) - 1 
+
+output_array = [0] * line_length
+
+# for each bit in number: scan lines to get count of 0s and 1s
+
+for i in range(0, line_length):
+    zero = 0
+    one = 0
+    for line in lines: 
+        if line[i] == '0':
+            zero += 1
+        # else
+        if line[i] == '1':
+            one += 1
+
+    if zero > one: 
+        output_array[i] = 0
+    # else 
+    elif one > zero:
+        output_array[i] = 1
+    # else equal? not sure what to do for this test case 
+    else: 
+        print("zero and one equal")
+        output_array[i] = 0
+    
+    # restart read to beginning
+    file.seek(0)
+
+
+
+
+# output_array is gamma rate 
+
+# reverse output_array / gamma rate to get epsilon rate
+epsilon_array = [0] * line_length
+for i in range(len(output_array)):
+    if output_array[i] == 0:
+        epsilon_array[i] = 1
+    else: 
+        epsilon_array[i] = 0
+
+print(output_array)
+print(epsilon_array)
+
+
+
+
+
+
+# close file
+file.close()
