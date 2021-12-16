@@ -87,9 +87,6 @@ for i in range(0, line_length):
     # restart read to beginning
     file.seek(0)
 
-
-
-
 # output_array is gamma rate 
 
 # reverse output_array / gamma rate to get epsilon rate
@@ -104,9 +101,42 @@ print(output_array)
 print(epsilon_array)
 
 
+# make two copies of the lines, one for oxygen, one for CO2
+oxygen_lines = lines.copy()
+co2_lines = lines.copy()
 
+# to get ratings:
+# output_array / gamma rate for oxygen
+# epsilon_array for co2
+# loop deleting values that don't have the bit at the position corresponding rates
+# loop until only one left which is the rating
 
+# oxygen generator rating
+while len(oxygen_lines) > 1:
+    for i in range(line_length):
+        for line in oxygen_lines:
+            if int(line[i]) != output_array[i]:
+                oxygen_lines.remove(line)
+
+print("oxygen lines:  ", oxygen_lines)
+
+# co2 scrubber rating
+while (len(co2_lines)) > 1:
+    for i in range(line_length):
+        for line in co2_lines:
+            if int(line[i]) != epsilon_array[i]:
+                co2_lines.remove(line)
+
+print('exited loop')
+print("co2 lines:     ", co2_lines)
+
+# left off: need to create function 
+# call after each remove line to seenew most/least common values
 
 
 # close file
 file.close()
+
+
+# output is oxygen generator rating * CO2 scrubber rating
+
